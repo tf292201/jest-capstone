@@ -1,0 +1,157 @@
+from flask import Flask, redirect, render_template, request, flash, session, g, jsonify
+from models import db, User, connect_db
+from forms import RegisterUser, LoginUser
+from sqlalchemy.exc import IntegrityError
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = "abcdef"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///gameshow'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
+app.debug = True
+
+CURR_USER_KEY = "curr_user"
+
+connect_db(app)
+"""uncomment to seed"""
+# with app.app_context():
+#     db.create_all()
+
+##############################################################################
+# User signup/login/logout
+@app.before_request
+def add_user_to_g():
+    """If we're logged in, add curr user to Flask global."""
+    if CURR_USER_KEY in session:
+        g.user = User.query.get(session[CURR_USER_KEY])
+    else:
+        g.user = None
+
+
+def do_login(user):
+    """Log in user."""
+    session[CURR_USER_KEY] = user.id
+
+
+def do_logout():
+    """Logout user."""
+    if CURR_USER_KEY in session:
+        del session[CURR_USER_KEY]
+
+# redner home page or if user is logged in, redirect to profile
+@app.route('/')
+def home():
+    if g.user:
+        return redirect (f'/{g.user.id}/profile')
+    else:
+        return render_template ('home-anon.html')
+
+# render login page and allow user to login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginUser()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        user = User.authenticate(username, password)
+        if user:
+            do_login(user)
+            flash(f"Hello, {user.username}!", "success")
+            return redirect(f'/{user.id}/profile')
+    else:
+        return render_template('login.html', form=form)
+
+  
+    return redirect ('/')
+
+
+@app.route('/<int:user_id>/gameboard')
+def gameboard(user_id):
+    if not g.user:
+        flash("Access unauthorized.", 'danger')
+    return render_template('gameboard.html' , user=user_id)
+
+
+@app.route('/<int:user_id>/profile')
+def profile(user_id):
+    if not g.user:
+        flash("Access unauthorized.", 'danger')
+        return redirect("/")
+
+    user = User.query.get_or_404(session[CURR_USER_KEY])
+    return render_template('/profile.html', user=user)
+
+
+
+
+@app.route('/get_user_data', methods=['GET'])
+def get_user_data():
+    if g.user:
+        return jsonify({'money': g.user.money, 'gamesplayed': g.user.gamesplayed})
+    else:
+        return jsonify({'error': 'User not logged in'}), 401
+
+@app.route('/update_user_data', methods=['POST'])
+def update_user_data():
+    if g.user:
+        player_score = request.json.get('careerScore')
+        total_games = request.json.get('totalGames')
+
+        # Update g.user.money and g.user.gamesplayed here
+        g.user.money = player_score
+        g.user.gamesplayed = total_games + 1
+
+        db.session.commit()
+
+        return jsonify({"message": "User info updated successfully"})
+    else:
+        return jsonify({"message": "Access unauthorized"}), 403
+
+
+# query all users and sort by money
+@app.route('/leaderboard', methods=['GET'])
+def leaderboard():
+    if not g.user:
+        flash("Access unauthorized.", 'danger')
+        return redirect("/")
+
+    all_users = User.query.all()
+
+    all_users = sorted(all_users, key=lambda x: x.money, reverse=True)
+
+    return render_template('leaderboard.html', users=all_users)
+
+
+
+
+
+
+@app.route('/logout')
+def logout():
+    do_logout()
+    return redirect('/')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterUser()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        email = form.email.data
+        try:
+            user = User.signup(username, password, email)
+            db.session.commit()
+        except IntegrityError:
+            flash("Username already taken", 'danger')
+            return render_template('register.html', form=form)
+        do_login(user)
+        return redirect(f'/{user.id}/profile')  # Use user.id directly
+    else:
+        return render_template('register.html', form=form)
+
+    return redirect(f'/{user_id}/profile')
+
+
+if __name__ == '__main__':
+    app.run()

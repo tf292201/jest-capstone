@@ -1,0 +1,203 @@
+.navbar{
+background: none;
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.nav-link {
+  text-decoration: none;
+  color: #333; /* Set your desired text color */
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease; /* Add a smooth color transition */
+}
+.nav-link:hover {
+  color: #007BFF; /* Change the color on hover */
+}
+
+#score-container {
+background: linear-gradient(#262499, #22275c);
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+border-radius: 3px;
+border-bottom-left-radius: 0%;
+border-bottom-right-radius: 0%;
+border: solid 3px black;
+border-bottom: solid 1px black;
+}
+
+.main-content{
+background: none;
+}
+.footer{
+background: none;
+}
+body {
+  background-color: white;
+}
+
+.game-tr-header th {
+  word-wrap: break-word;
+  text-transform: uppercase;
+  font-family: 'Korrina', serif;
+  font-weight: bolder;
+  height: 3em;
+  color: white;
+  text-shadow: rgb(0, 0, 0) 1px 1px;
+  border: solid 3px rgb(0, 0, 0);
+  min-width: 8em;
+  padding: 1em;
+  background: linear-gradient(#262499, #22275c);
+  border-radius: 4px;
+  font-size: 1.2em; /* Default font size */
+}
+
+.game-table {
+  background-color: #00000013;
+  color: white;
+  border: solid 3px rgb(0, 0, 0);
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+div {
+  background-color: black;
+  width: fit-content;
+  height: fit-content;
+}
+
+.game-td {
+  margin: 0;
+  background: linear-gradient(#262499, #22275c);
+  border: solid 2px rgb(0, 0, 0);
+  width: 7em;
+  height: 6em;
+  padding: 1em;
+  text-align: center;
+  text-shadow: rgb(0, 0, 0) 1px 1px;
+  word-wrap: break-word;
+  font-family: 'Korrina', serif;
+  font-weight: 500;
+  font-size: 1.2em; /* Default font size */
+  text-transform: uppercase;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#overlay {
+  display: none;
+  border: solid 3px rgb(0, 0, 0);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: linear-gradient(#3937ac, #090a18);
+  color: white;
+  font-size: 1.5em;
+  font-family: 'Korrina', serif;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  border-radius: 4px;
+}
+
+#overlay li {
+  
+  text-align: left;
+
+}
+
+#overlay li:hover {
+  color: #e3f119;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: 'gyparody';
+  src: ('/gyparody.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Korrina';
+  src: ('/Korrina.otf') format('truetype');
+}
+
+
+#title {
+  font-family: 'gyparody', serif;
+  font-size: 3em;
+  color: white;
+  font-weight: lighter;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2cqh;
+  padding: 0.5em;
+  border-radius: 4px;
+  margin-bottom: 0.5em;
+  background: transparent;
+}
+
+
+.score-display {
+  word-wrap: break-word;
+  text-transform: uppercase;
+  font-family: 'Korrina', serif;
+  font-weight: bolder;
+  height: 3em;
+  color: white;
+  text-shadow: rgb(0, 0, 0) 1px 1px;
+  margin-bottom: 10px;
+  background-color: #333; /* Background color */
+  padding: none;
+  border-radius: 5px;
+  background: none;
+  margin-right: 10px;
+}
+
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  th, td {
+      font-size: 1em; /* Adjust font size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  th, td {
+      font-size: 0.5em; /* Further adjust font size for even smaller screens */
+  }
+}
+/* End of styles for responsiveness */
+
+/* Styles for leaderboard */
+.leaderboard-table {
+  width: 80%; /* Adjust the width as needed */
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: #ffffff; /* Text color for a video game feel */
+}
+
+.leaderboard-table th, .leaderboard-table td {
+  border: 2px solid #ffffff; /* White border for cells */
+  padding: 10px;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  background-color: #2d2d2d; /* Darker background for header */
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #2d2d2d; /* Darker background for even rows */
+}
+
+.leaderboard-table tr:nth-child(odd) {
+  background-color: #1c1c1c; /* Dark background for odd rows */
+}

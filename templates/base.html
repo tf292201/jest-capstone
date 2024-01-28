@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Jest-a-Gameshow{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Copse&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>{% block navbar_title %}{% endblock %}</h1>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/leaderboard">Leaderboard</a>
+        <a href="/{{ user.id }}/gameboard">Go to gameboard</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/logout">Logout</a>
+        
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <!-- Your main content goes here -->
+        {% block content %}
+        <h2>Main Content</h2>
+        <p>This is where your main content goes.</p>
+        {% endblock %}
+    </div>
+
+
+</body>
+
+</html>

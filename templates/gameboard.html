@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block navbar_title %}
+
+{% endblock %}S
+{% block title %}
+Gameboard
+{% endblock %}
+
+{% block content %}
+<div id="overlay"></div>
+
+<div id="score-container">
+  <div class="score-display" id="scoreDisplay">Career Money Won: $0</div>
+  <div class="score-display" id="gamesPlayedDisplay">Games Played: 0</div>
+  <div class="score-display" id="gameScoreDisplay">Money Won: $0</div>
+  <div id="title">JEST-A-GAMESHOW!</div>
+</div>
+
+  {# Include the JavaScript file #}
+  <script src="/static/js/js.js"></script>
+  <link rel="stylesheet" href="/static/css/styles.css">
+{% endblock %}

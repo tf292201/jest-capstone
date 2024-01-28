@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block navbar_title %} {{ user.username }} Game Stats {% endblock %}
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Games Played</th>
+            <th>Money Won</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.gamesplayed }}</td>
+                <td>{{ user.money }}</td>
+            </tr>
+    </tbody>
+</table>
+
+<canvas id="drawCanvas" width="300" height="200"></canvas>
+<button id="saveButton">Save as Profile Picture</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const canvas = document.getElementById("drawCanvas");
+        const ctx = canvas.getContext("2d");
+        let drawing = false;
+
+        // Set up linear gradient background
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, "#3937ac"); // Start color
+        gradient.addColorStop(1, "#22275c"); // End color
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = "#FFFFFF";
+
+        const borderRadius = 10;
+        canvas.style.borderRadius = `${borderRadius}px`;
+
+        canvas.addEventListener("mousedown", startDrawing);
+        canvas.addEventListener("mousemove", draw);
+        canvas.addEventListener("mouseup", stopDrawing);
+        canvas.addEventListener("mouseout", stopDrawing);
+
+        function startDrawing(e) {
+            drawing = true;
+            draw(e);
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+
+            ctx.lineWidth = 4;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = "#FFFFFF"; // White strokes
+
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        }
+
+        function stopDrawing() {
+            drawing = false;
+            ctx.beginPath();
+        }
+
+        const saveButton = document.getElementById("saveButton");
+        saveButton.addEventListener("click", saveCanvasAsImage);
+
+        function saveCanvasAsImage() {
+            const image = new Image();
+            image.src = canvas.toDataURL("image/png");
+
+            // You can now send this image data to the server for saving as a user's profile picture.
+            // For simplicity, this example just logs the data URL.
+            console.log("Image Data URL:", image.src);
+        }
+    });
+</script>
+
+<a class="nav-link" href="/leaderboard">Leaderboard</a>
+<a class="nav-link" href="/{{ user.id }}/gameboard">Go to gameboard</a>
+{% endblock %}
