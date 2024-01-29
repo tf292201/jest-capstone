@@ -6,6 +6,15 @@
 
 {% block content %}
 
+<div class="navbar">
+  <nav>
+  <a class="nav-link" href="/{{ user.id }}/profile">Profile</a>
+  <a class="nav-link" href="/{{ user.id }}/gameboard">Go to gameboard</a>
+  <a class="nav-link" href="/logout">Logout</a>
+  
+  </nav>
+</div>
+
 <table class="leaderboard-table">
     <thead>
         <tr>

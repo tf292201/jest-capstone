@@ -78,8 +78,8 @@ def profile(user_id):
         flash("Access unauthorized.", 'danger')
         return redirect("/")
 
-    user = User.query.get_or_404(session[CURR_USER_KEY])
-    return render_template('/profile.html', user=user)
+    user = User.query.get_or_404(user_id)
+    return render_template('profile.html', user=user, user_id=user_id)
 
 
 
@@ -116,10 +116,10 @@ def leaderboard():
         return redirect("/")
 
     all_users = User.query.all()
-
+    user = User.query.get_or_404(g.user.id)
     all_users = sorted(all_users, key=lambda x: x.money, reverse=True)
 
-    return render_template('leaderboard.html', users=all_users)
+    return render_template('leaderboard.html', users=all_users, user=user)
 
 
 

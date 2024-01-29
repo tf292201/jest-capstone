@@ -1,9 +1,12 @@
+//global variables to keep track of player score and games played
 var careerScore = 0;
 var totalGames = 0;
 var gameScore = 0;
+
 //count the questions to determine a full game
 var cellsClicked = 0;
 var cellsPerGame = 30;
+
 // Function to update the display of player score and games played
 function updateDisplay(data) {
   $('#scoreDisplay').text('Career Score: $' + careerScore);
@@ -32,6 +35,8 @@ $(document).ready(function() {
     }
 });
 
+
+  // Create gameboard with text, add event listners and overlay
   // Define the list of categories
   var categories = ['MUSIC', 'SPORT AND LEISURE', 'FILM AND TV', 'ARTS AND LITERATURE', 'HISTORY', 'SCIENCE'];
 
@@ -60,6 +65,7 @@ $(document).ready(function() {
     makeAjaxRequest(cellId, cellText);
   });
 });
+
 
 // Function to build the table
 function buildTable(categories) {
@@ -157,6 +163,7 @@ function getCategoryAndDifficultyFromCellId(cellId) {
     5: 'science'
   };
 
+  
   // Map the second digit to a difficulty
   var difficultyMap = {
     0: 'easy',

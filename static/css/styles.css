@@ -1,31 +1,55 @@
-.navbar{
-background: none;
-margin: 0;
-padding: 0;
-list-style: none;
+nav {
+  display: flex;
+  justify-content:space-around; /* Evenly space the navigation links */
+  width: 100%; /* Full-width */
 }
+.navbar {
+  background-color: #2d2d2d; /* Background color for the navbar */
+   width: 100%; /* Full-width */
+  border-radius: 4px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2d2d2d; /* Background color for the div */
+  padding: 10px 20px; /* Add padding to the div, adjust as needed */
+  text-align: center;
+
+}
+
 .nav-link {
   text-decoration: none;
-  color: #333; /* Set your desired text color */
+  color: #ffffff; /* Set your desired text color */
   font-weight: bold;
   font-size: 16px;
-  transition: color 0.3s ease; /* Add a smooth color transition */
+  transition: color 0.4s ease; /* Add a smooth color transition */
+  font-family: 'gyparody', serif;
 }
 .nav-link:hover {
   color: #007BFF; /* Change the color on hover */
 }
 
-#score-container {
-background: linear-gradient(#262499, #22275c);
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-border-radius: 3px;
-border-bottom-left-radius: 0%;
-border-bottom-right-radius: 0%;
-border: solid 3px black;
-border-bottom: solid 1px black;
+#score-container  {
+  background: linear-gradient(#262499, #22275c);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 3px;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border: solid 3px black;
+  border-bottom: solid 1px black;
+  padding: 10px;
+  position: fixed;
+  top: 39px; /* Use top property instead of margin-top */
+  left: 0; /* Stick to the right */
+  height: 70px; /* Adjust the height as needed */
+}
+@media only screen and (max-width: 600px) {
+  #score-container {
+    padding: 1% 5%; /* Adjust padding for smaller screens */
+    font-size: 14px;
+  }
 }
 
 .main-content{
@@ -35,7 +59,11 @@ background: none;
 background: none;
 }
 body {
-  background-color: white;
+  background: linear-gradient(#262499, #15183a);
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+  min-height: 100vh; 
 }
 
 .game-tr-header th {
@@ -123,7 +151,7 @@ div {
 
 @font-face {
   font-family: 'gyparody';
-  src: ('/gyparody.ttf') format('truetype');
+  src: ('/gyparody-1.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Korrina';
@@ -133,14 +161,14 @@ div {
 
 #title {
   font-family: 'gyparody', serif;
-  font-size: 3em;
+  font-size: 2.5em;
   color: white;
-  font-weight: lighter;
+  font-weight: bolder;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
   letter-spacing: 2cqh;
   padding: 0.5em;
   border-radius: 4px;
-  margin-bottom: 0.5em;
+  margin-bottom: 2em;
   background: transparent;
 }
 
@@ -154,6 +182,7 @@ div {
   color: white;
   text-shadow: rgb(0, 0, 0) 1px 1px;
   margin-bottom: 10px;
+  margin-left: 10px;
   background-color: #333; /* Background color */
   padding: none;
   border-radius: 5px;
@@ -173,6 +202,12 @@ div {
   th, td {
       font-size: 0.5em; /* Further adjust font size for even smaller screens */
   }
+}
+@media screen and (max-width: 390px) {
+  th, td {
+      font-size: .25em; /* Adjust font size for smaller screens */
+  }
+  
 }
 /* End of styles for responsiveness */
 
