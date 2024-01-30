@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from datetime import datetime
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
@@ -8,11 +9,13 @@ class User(db.Model):
     """model for users table"""
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)  
-    email = db.Column(db.String(100), unique=True, nullable=False)  
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    password = db.Column(db.String(20), nullable=False)  
+    email = db.Column(db.String(50), unique=True, nullable=False)  
     gamesplayed = db.Column(db.Integer, default=0)
     money = db.Column(db.Integer, default=0)
+
+    games = db.relationship('Game', backref='player', lazy=True)
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
@@ -42,6 +45,16 @@ class User(db.Model):
                 return user
         return False
 
+
+class Game(db.Model):
+    """Model for games table"""
+    __tablename__ = 'games'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    score = db.Column(db.Integer, nullable=False) 
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+    
 
 def connect_db(app):
     """Connect to database."""

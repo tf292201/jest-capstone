@@ -163,7 +163,7 @@ function getCategoryAndDifficultyFromCellId(cellId) {
     5: 'science'
   };
 
-  
+
   // Map the second digit to a difficulty
   var difficultyMap = {
     0: 'easy',
@@ -204,7 +204,7 @@ function handleAnswerSelection(selectedAnswer, correctAnswer, amount) {
   // Check if handleAnswerSelection has been called 30 times
   if (cellsClicked >= cellsPerGame) {
     // Update user info after the last question
-    updateUserInfo(careerScore, totalGames);
+    updateUserInfo(careerScore, totalGames, gameScore);
 
     // Reset cellsClicked, and gameScore for the next game
     cellsClicked = 0;
@@ -217,14 +217,15 @@ function handleAnswerSelection(selectedAnswer, correctAnswer, amount) {
 }
 
 
-function updateUserInfo(careerScore, totalGames) {
+function updateUserInfo(careerScore, totalGames, gameScore) {
   $.ajax({
       url: '/update_user_data',
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
           careerScore: careerScore,
-          totalGames: totalGames
+          totalGames: totalGames,
+          gameScore: gameScore
       }),
       success: function(response) {
           console.log(response.message);
@@ -234,4 +235,7 @@ function updateUserInfo(careerScore, totalGames) {
       }
   });
 }
+
+
+
 

@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request, flash, session, g, jsonify
-from models import db, User, connect_db
+from datetime import datetime
+from models import db, User, Game, connect_db
 from forms import RegisterUser, LoginUser
 from sqlalchemy.exc import IntegrityError
 
@@ -14,8 +15,8 @@ CURR_USER_KEY = "curr_user"
 
 connect_db(app)
 """uncomment to seed"""
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 ##############################################################################
 # User signup/login/logout
@@ -79,7 +80,8 @@ def profile(user_id):
         return redirect("/")
 
     user = User.query.get_or_404(user_id)
-    return render_template('profile.html', user=user, user_id=user_id)
+    games = Game.query.filter_by(user_id=user_id).all()
+    return render_template('profile.html', user=user, user_id=user_id, games=games)
 
 
 
@@ -96,11 +98,16 @@ def update_user_data():
     if g.user:
         player_score = request.json.get('careerScore')
         total_games = request.json.get('totalGames')
-
+        game_score = request.json.get('gameScore')
         # Update g.user.money and g.user.gamesplayed here
         g.user.money = player_score
         g.user.gamesplayed = total_games + 1
 
+        db.session.commit()
+
+        # Update the Game model
+        gameboard = Game(user_id=g.user.id, score=game_score, timestamp=datetime.utcnow())
+        db.session.add(gameboard)
         db.session.commit()
 
         return jsonify({"message": "User info updated successfully"})
@@ -150,7 +157,6 @@ def register():
     else:
         return render_template('register.html', form=form)
 
-    return redirect(f'/{user_id}/profile')
 
 
 if __name__ == '__main__':

@@ -29,5 +29,21 @@
             </tr>
     </tbody>
 </table>
+Game History:
+<table>
+    <thead>
+        <tr>
+            <th>Game Winnings</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{ game.score }}</td>
+                <td>{{ game.timestamp }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
 
 {% endblock %}

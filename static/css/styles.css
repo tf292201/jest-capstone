@@ -3,6 +3,21 @@ nav {
   justify-content:space-around; /* Evenly space the navigation links */
   width: 100%; /* Full-width */
 }
+
+span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d2d2d; /* Background color for the navbar */
+  color: #fff;
+  padding: 10px;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  right: 0;
+  /* z-index: 1000; */
+}
+
 .navbar {
   background-color: #2d2d2d; /* Background color for the navbar */
    width: 100%; /* Full-width */
@@ -16,6 +31,8 @@ nav {
   text-align: center;
 
 }
+
+
 
 .nav-link {
   text-decoration: none;
@@ -135,6 +152,7 @@ div {
   padding-top: 10%;
   padding-bottom: 10%;
   border-radius: 4px;
+  z-index: 2000;
 }
 
 #overlay li {
@@ -151,12 +169,19 @@ div {
 
 @font-face {
   font-family: 'gyparody';
-  src: ('/gyparody-1.ttf') format('truetype');
+  src: url('/static/gyparody-1.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('/static/PressStart2P.ttf') format('truetype');
+}
+
 @font-face {
   font-family: 'Korrina';
-  src: ('/Korrina.otf') format('truetype');
+  src: url('/static/Korrina.otf') format('opentype');
 }
+
 
 
 #title {
@@ -173,21 +198,11 @@ div {
 }
 
 
-.score-display {
-  word-wrap: break-word;
-  text-transform: uppercase;
-  font-family: 'Korrina', serif;
-  font-weight: bolder;
-  height: 3em;
-  color: white;
-  text-shadow: rgb(0, 0, 0) 1px 1px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  background-color: #333; /* Background color */
-  padding: none;
-  border-radius: 5px;
-  background: none;
-  margin-right: 10px;
+.score {
+  flex: 1;
+  text-align: center;
+  background-color: #2d2d2d; /* Background color for the div */
+  font-family: 'PressStart2P', serif;
 }
 
 
@@ -235,4 +250,13 @@ div {
 
 .leaderboard-table tr:nth-child(odd) {
   background-color: #1c1c1c; /* Dark background for odd rows */
+}
+
+
+.toast-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
