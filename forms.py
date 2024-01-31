@@ -10,6 +10,3 @@ class RegisterUser(FlaskForm):
 class LoginUser(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[Length(min=6)])
-
-class AnserQuestion(FlaskForm):
-    answer = StringField('Answer', validators=[DataRequired()])

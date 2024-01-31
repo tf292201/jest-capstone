@@ -13,7 +13,7 @@
     
     </nav>
 </div>
-<table>
+<table class="leaderboard-table">
     <thead>
         <tr>
             <th>Username</th>
@@ -29,12 +29,14 @@
             </tr>
     </tbody>
 </table>
-Game History:
-<table>
+<table class="leaderboard-table">
     <thead>
         <tr>
-            <th>Game Winnings</th>
-            <th>Date</th>
+            <th id="title" colspan="2">Game History</th>
+        </tr>
+        <tr>
+            <th id="title">Game Winnings</th>
+            <th id="title">Date</th>
         </tr>
     </thead>
     <tbody>
@@ -45,5 +47,5 @@ Game History:
             </tr>
         {% endfor %}
     </tbody>
-
+</table>    
 {% endblock %}

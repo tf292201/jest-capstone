@@ -10,7 +10,7 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    password = db.Column(db.String(20), nullable=False)  
+    password = db.Column(db.String(100), nullable=False)  
     email = db.Column(db.String(50), unique=True, nullable=False)  
     gamesplayed = db.Column(db.Integer, default=0)
     money = db.Column(db.Integer, default=0)
@@ -53,7 +53,10 @@ class Game(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     score = db.Column(db.Integer, nullable=False) 
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-
+    
+    def formatted_timestamp(self):
+        """Return a formatted timestamp string."""
+        return self.timestamp.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
     
 
 def connect_db(app):

@@ -38,9 +38,10 @@ span {
   text-decoration: none;
   color: #ffffff; /* Set your desired text color */
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1.3em;
   transition: color 0.4s ease; /* Add a smooth color transition */
   font-family: 'gyparody', serif;
+  text-transform: uppercase;
 }
 .nav-link:hover {
   color: #007BFF; /* Change the color on hover */
@@ -106,6 +107,7 @@ body {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
+  margin-top: 35px;
 }
 
 div {
@@ -186,15 +188,15 @@ div {
 
 #title {
   font-family: 'gyparody', serif;
-  font-size: 2.5em;
+  font-size: 1.5em;
   color: white;
   font-weight: bolder;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-  letter-spacing: 2cqh;
   padding: 0.5em;
-  border-radius: 4px;
-  margin-bottom: 2em;
+  margin-bottom: .5em;
   background: transparent;
+  
+
 }
 
 

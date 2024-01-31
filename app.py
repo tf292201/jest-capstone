@@ -22,7 +22,7 @@ with app.app_context():
 # User signup/login/logout
 @app.before_request
 def add_user_to_g():
-    """If we're logged in, add curr user to Flask global."""
+    """If logged in add curr user to Flask global."""
     if CURR_USER_KEY in session:
         g.user = User.query.get(session[CURR_USER_KEY])
     else:
@@ -115,13 +115,13 @@ def update_user_data():
         return jsonify({"message": "Access unauthorized"}), 403
 
 
-# query all users and sort by money
+# Route for leaderboard
 @app.route('/leaderboard', methods=['GET'])
 def leaderboard():
     if not g.user:
         flash("Access unauthorized.", 'danger')
         return redirect("/")
-
+# query all users and sort by money
     all_users = User.query.all()
     user = User.query.get_or_404(g.user.id)
     all_users = sorted(all_users, key=lambda x: x.money, reverse=True)
@@ -132,13 +132,13 @@ def leaderboard():
 
 
 
-
+#route for logout
 @app.route('/logout')
 def logout():
     do_logout()
     return redirect('/')
 
-
+#route for register 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterUser()
