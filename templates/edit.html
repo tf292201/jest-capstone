@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
 {% block navbar_title %}{% endblock %}
-{% block title %}Register{% endblock %}
+{% block title %}Edit User{% endblock %}
 
 {% block content %}
-<h1 id="title">Register</h1>
+<div class="navbar">
+  <nav>
+  <a class="nav-link" href="/leaderboard">Leaderboard</a>
+  <a class="nav-link" href="/{{ user.id }}/gameboard">Go to gameboard</a>
+  <a class="nav-link" href="/logout">Logout</a>
+  <a class="nav-link" href="/{{ user.id }}/profile">Profile</a>
+  </nav>
+</div>
+<h1 id="title">Edit Profile</h1>
 <div id="container">
+  
 <form method="POST">
 
   {{form.hidden_tag()}}
@@ -31,7 +40,7 @@
 
   {% endfor %}
 
-  <button class="btn btn-primary">Add!</button>
+  <button class="btn btn-primary">Edit</button>
 </form>
 </div>
 {% endblock %}

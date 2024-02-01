@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, request, flash, session, g, jsonify
 from datetime import datetime
 from models import db, User, Game, connect_db
-from forms import RegisterUser, LoginUser
+from forms import RegisterUser, LoginUser, EditUser
 from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
@@ -15,8 +15,8 @@ CURR_USER_KEY = "curr_user"
 
 connect_db(app)
 """uncomment to seed"""
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 ##############################################################################
 # User signup/login/logout
@@ -157,6 +157,39 @@ def register():
     else:
         return render_template('register.html', form=form)
 
+@app.route('/<int:user_id>/edit', methods=['GET', 'POST'])
+def update_user(user_id):
+    """Update user."""
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    user = User.query.get_or_404(user_id)
+    form = EditUser(obj=user)
+
+    if form.validate_on_submit():
+        if User.authenticate(user.username, form.password.data):
+            user.username = form.username.data
+            user.email = form.email.data
+            db.session.commit()
+            return redirect(f"/{user.id}/profile")
+        flash("Password incorrect", "danger")
+
+    return render_template('edit.html', user=user,form=form)
+
+@app.route('/<int:user_id>/delete', methods=['POST'])
+def delete_user(user_id):
+    """Delete user."""
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+    do_logout()
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect("/")
 
 
 if __name__ == '__main__':

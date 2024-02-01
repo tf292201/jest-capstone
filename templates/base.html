@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Jest-a-Gameshow{% endblock %}</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -26,8 +23,12 @@
         <p>This is where your main content goes.</p>
         {% endblock %}
     </div>
-
-
+    <div class="flash-messages" {% if not get_flashed_messages() %}style="display: none;"{% endif %}>
+      {% for category, message in get_flashed_messages(with_categories=True) %}
+          <div class="flash-messages">{{ message }}</div>
+      {% endfor %}
+  </div>
+  
 </body>
 
 </html>
