@@ -15,8 +15,8 @@ CURR_USER_KEY = "curr_user"
 
 connect_db(app)
 """uncomment to seed"""
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 ##############################################################################
 # User signup/login/logout
