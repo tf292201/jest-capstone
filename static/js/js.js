@@ -117,9 +117,9 @@ function makeAjaxRequest(cellId, amount) {
       var questionText = data[0].question.text;
       var incorrectAnswers = data[0].incorrectAnswers.map(answer => answer);
       var correctAnswer = data[0].correctAnswer;
-      console.log(correctAnswer);
+      
       var allAnswers = incorrectAnswers.concat(correctAnswer);
-      console.log(allAnswers);
+      
       
       shuffleArray(allAnswers);
 
@@ -176,7 +176,7 @@ function getCategoryAndDifficultyFromCellId(cellId) {
   // Get the category and difficulty based on the mappings
   var category = categoryMap[firstDigit] || 'default';
   var difficulty = difficultyMap[secondDigit];
-  console.log(secondDigit)
+  
   return { category: category, difficulty: difficulty };
 }
 
