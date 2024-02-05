@@ -1,32 +1,42 @@
 nav {
   display: flex;
-  justify-content:space-around; /* Evenly space the navigation links */
-  width: 100%; /* Full-width */
+  justify-content:space-around; 
+  width: 100%; 
 }
 
 span {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2d2d2d; /* Background color for the navbar */
+  background-color: #2d2d2d; 
   color: #fff;
   padding: 10px;
   position: fixed;
   top: 40px;
   left: 0;
   right: 0;
-  /* z-index: 1000; */
+}
+@media screen and (max-width: 600px) {
+  span {
+    top: 30px
+  }
+}
+
+@media screen and (max-width: 480px) {
+  span {
+    top: 30px
+  }
 }
 
 .navbar {
-  background-color: #2d2d2d; /* Background color for the navbar */
-   width: 100%; /* Full-width */
+  background-color: #2d2d2d; 
+   width: 100%; 
   border-radius: 4px;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #2d2d2d; /* Background color for the div */
+  background-color: #2d2d2d; 
   padding: 10px 20px; /* Add padding to the div, adjust as needed */
   text-align: center;
 
@@ -148,6 +158,18 @@ div {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@media screen and (max-width: 600px) {
+  .game-td {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .game-td {
+    font-size: 0.8em; 
+    padding: 0.3em;
+  }
+}
 
 #overlay {
   display: none;
@@ -170,6 +192,18 @@ div {
   z-index: 2000;
 }
 
+
+@media screen and (max-width: 600px) {
+  #overlay {
+    font-size: 1.2em; /* Adjust the font size for screens with width up to 600px */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #overlay {
+    font-size: 1em; /* Adjust the font size for screens with width up to 480px */
+  }
+}
 #overlay li {
   
   text-align: left;
@@ -220,7 +254,17 @@ div {
   background-color: #2d2d2d; 
   font-family: 'PressStart2P', serif;
 }
+@media screen and (max-width: 600px) {
+  .score {
+    font-size: 1em;
+  }
+}
 
+@media screen and (max-width: 480px) {
+  .score {
+    font-size: 0.8em;
+  }
+}
 /* 
 
 @media screen and (max-width: 768px) {

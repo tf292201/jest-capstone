@@ -57,7 +57,7 @@ def login():
         user = User.authenticate(username, password)
         if user:
             do_login(user)
-            flash(f"Hello, {user.username}!", "success")
+            flash(f"Hello, {user.username}!")
             return redirect(f'/{user.id}/profile')
     else:
         return render_template('login.html', form=form)
