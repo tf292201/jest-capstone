@@ -147,18 +147,16 @@ def register():
         password = form.password.data
         email = form.email.data
 
-        try:
+        # Check if username or email already exists
+        if User.query.filter((User.username == username) | (User.email == email)).first():
+            flash("Username or email already taken", 'danger')
+        else:
+            # If not, create a new user
             user = User.signup(username, password, email)
             db.session.commit()
             flash("Registration successful! You are now logged in.", 'success')
             do_login(user)
             return redirect(f'/{user.id}/profile')  # Use user.id directly
-        except IntegrityError:
-            db.session.rollback()
-            flash("Username or email already taken", 'danger')
-        except Exception as e:
-            db.session.rollback()
-            flash(f"An error occurred: {str(e)}", 'danger')
 
     return render_template('register.html', form=form)
 
