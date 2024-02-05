@@ -138,24 +138,29 @@ def logout():
     do_logout()
     return redirect('/')
 
-#route for register 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterUser()
+
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         email = form.email.data
+
         try:
             user = User.signup(username, password, email)
             db.session.commit()
+            flash("Registration successful! You are now logged in.", 'success')
+            do_login(user)
+            return redirect(f'/{user.id}/profile')  # Use user.id directly
         except IntegrityError:
-            flash("Username already taken", 'danger')
-            return render_template('register.html', form=form)
-        do_login(user)
-        return redirect(f'/{user.id}/profile')  # Use user.id directly
-    else:
-        return render_template('register.html', form=form)
+            db.session.rollback()
+            flash("Username or email already taken", 'danger')
+        except Exception as e:
+            db.session.rollback()
+            flash(f"An error occurred: {str(e)}", 'danger')
+
+    return render_template('register.html', form=form)
 
 @app.route('/<int:user_id>/edit', methods=['GET', 'POST'])
 def update_user(user_id):
