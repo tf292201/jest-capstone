@@ -54,10 +54,6 @@ class Game(db.Model):
     score = db.Column(db.Integer, nullable=False) 
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     
-    def formatted_timestamp(self):
-        """Return a formatted timestamp string."""
-        return self.timestamp.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    
 
 def connect_db(app):
     """Connect to database."""
