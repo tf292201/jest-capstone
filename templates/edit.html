@@ -42,5 +42,12 @@
 
   <button class="btn btn-primary">Edit</button>
 </form>
+<div class="button-container">
+  <form action="/{{ user.id }}/delete" method="post">
+    <button type="submit" class="styled-button">Delete User</button>
+  </form>
+</div>
 </div>
 {% endblock %}
+
+
