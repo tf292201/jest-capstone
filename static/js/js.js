@@ -109,7 +109,7 @@ function makeAjaxRequest(cellId, amount) {
       difficulty: difficulty
     },
     success: function(data) {
-      // Process the returned question data
+      
       console.log('Question:', data);
       // Show the overlay with the cell text and a close button
 

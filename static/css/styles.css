@@ -46,6 +46,17 @@ span {
 .nav-link:hover {
   color: #007BFF; /* Change the color on hover */
 }
+@media screen and (max-width: 600px) {
+  .nav-link {
+    font-size: 1em; /* Adjust the font size for smaller screens */
+    font-weight: normal;
+  }
+}
+@media screen and (max-width: 450px) {
+  .nav-link {
+    font-size: .7em; /* Adjust the font size for smaller screens */
+  }
+}
 
 #score-container  {
   background: linear-gradient(#262499, #22275c);
@@ -206,59 +217,60 @@ div {
 .score {
   flex: 1;
   text-align: center;
-  background-color: #2d2d2d; /* Background color for the div */
+  background-color: #2d2d2d; 
   font-family: 'PressStart2P', serif;
 }
 
+/* 
 
-/* Media queries for responsiveness */
 @media screen and (max-width: 768px) {
   th, td {
-      font-size: 1em; /* Adjust font size for smaller screens */
+      font-size: 1em;
   }
 }
 
 @media screen and (max-width: 480px) {
   th, td {
-      font-size: 0.5em; /* Further adjust font size for even smaller screens */
+      font-size: 0.8em;  
+      font-weight: lighter;
   }
 }
 @media screen and (max-width: 390px) {
   th, td {
-      font-size: .25em; /* Adjust font size for smaller screens */
+      font-size: .7em; 
+      font-weight:lighter;
   }
   
-}
-/* End of styles for responsiveness */
+} */
 
-/* Styles for leaderboard */
+
+
 .leaderboard-table {
-  width: 80%; /* Adjust the width as needed */
+  width: 80%;
   border-collapse: collapse;
   margin-top: 20px;
-  color: #ffffff; /* Text color for a video game feel */
+  color: #ffffff; 
   margin-left: 10%;
 
 }
 
 .leaderboard-table th, .leaderboard-table td {
-  border: 2px solid #ffffff; /* White border for cells */
+  border: 2px solid #ffffff;
   padding: 10px;
   text-align: center;
 }
 
 .leaderboard-table th {
-  background-color: #2d2d2d; /* Darker background for header */
+  background-color: #2d2d2d; 
 }
 
 .leaderboard-table tr:nth-child(even) {
-  background-color: #2d2d2d; /* Darker background for even rows */
+  background-color: #2d2d2d; 
 }
 
 .leaderboard-table tr:nth-child(odd) {
-  background-color: #1c1c1c; /* Dark background for odd rows */
+  background-color: #1c1c1c; 
 }
-
 
 .toast-container {
   display: none;
@@ -303,4 +315,75 @@ input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
+}
+
+#homeAnon {font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#homeAnon a { 
+  display:flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  width: 60%; 
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+  letter-spacing: 1px; 
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+#homeAnon a:hover {
+  color: #000000; 
+}
+
+#homeAnon header { 
+  background-color: transparent;
+  padding: 20px; 
+  color: #fff;
+  font-size: 28px; 
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+  letter-spacing: 1px; 
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .game-tr-header th {
+      font-size: .8em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .game-tr-header th {
+      font-size: .6em;
+      font-weight: lighter;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .game-tr th {
+      font-size: .8em;
+  }
+}
+@media screen and (max-width: 480px) {
+  .game-tr-header th {
+      font-size: .6em;
+      font-weight: lighter;
+  }
 }
