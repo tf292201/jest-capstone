@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "abcdef"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///gameshow'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uqjsflrl:sMJySKaFuWtrB5dmjJd_O0R_lPFoWn5x@kashin.db.elephantsql.com/uqjsflrl'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.debug = True
@@ -15,8 +15,8 @@ CURR_USER_KEY = "curr_user"
 
 connect_db(app)
 """uncomment to seed"""
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 ##############################################################################
 # User signup/login/logout
