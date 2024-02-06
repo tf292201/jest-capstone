@@ -16,3 +16,7 @@ New users are greeted with a simple homepage featuring links to login or registe
 The backend technology of this app comprises a Python Flask web server communicating with a PostgreSQL database using SQLAlchemy. The database consists of two tables: users and games, connected by a one-to-many relationship via the user ID foreign key.
 
 The Flask app dynamically renders HTML webpages from a base template using Jinja. Form inputs for registration, login, and profile updates were created using Flask-WTForms, with form validators for email and length requirements. Authentication is implemented using Bcrypt in signup and login methods under the user class.
+
+### Additional Features added
+
+Entire site was made mobile friendly via media queries in CSS. 
