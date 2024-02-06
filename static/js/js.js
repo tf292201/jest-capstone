@@ -206,10 +206,12 @@ function handleAnswerSelection(selectedAnswer, correctAnswer, amount) {
     // Update user info after the last question
     updateUserInfo(careerScore, totalGames, gameScore);
 
+
     // Reset cellsClicked, and gameScore for the next game
     cellsClicked = 0;
     gameScore = 0;
-
+    window.location.href = '/leaderboard';
+    
   }
 
   // updateDisplay();
